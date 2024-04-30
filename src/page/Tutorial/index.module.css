@@ -1,0 +1,36 @@
+.root {
+    width: 100%;
+    min-height: calc(100vh - 10rem);
+    padding: 0 10rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.progress_bar{
+    position: sticky;
+    top: 10rem;
+    height: 10rem;
+    width: calc(100vh - 10rem);
+    transform: rotate(-90deg) translateX(-23rem) translateY(-33rem);
+}
+
+.course_title {
+    position: sticky;
+    top: 0;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.tutorial_title {
+
+}
+
+.tutorial_block {
+    width: 100%;
+    text-align: left;
+    font-size: 1.5rem;
+    border-left: 3px solid #fcd17b;
+    padding: 1.5rem;
+    margin: 15px;
+}
+

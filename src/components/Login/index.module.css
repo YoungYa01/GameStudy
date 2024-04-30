@@ -1,0 +1,37 @@
+.content {
+    background-image: url('src/assets/images/wel_bg.jpg');
+    background-repeat: no-repeat;
+    background-clip: content-box;
+    background-blend-mode: difference;
+    background-position: 10% 10%;
+    animation: bgMove 60s infinite;
+}
+
+
+.form_bg {
+    background-color: rgb(var(--color-white));
+}
+
+@keyframes bgMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    15% {
+        background-position: 50% 50%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 50% 50%;
+    }
+    65% {
+        background-position: 0% 100%;
+    }
+    80%{
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}

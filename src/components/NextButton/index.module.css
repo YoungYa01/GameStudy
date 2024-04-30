@@ -1,0 +1,34 @@
+.root {
+    width: 100%;
+    margin: 3rem auto 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.btn_content {
+    display: inline-block;
+    width: 500px;
+    height: 60px;
+    color: var(--color-black);
+    line-height: 60px;
+    font-weight: 800;
+    background-image: url('https://cdn.mgz.cc/pub/static/images/study/level/enter_bg.png');
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+    user-select: none;
+}
+
+.btn_content:active {
+    color: var(--color-white);
+}
+
+.btn_content span{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
