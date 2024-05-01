@@ -1,0 +1,54 @@
+.header {
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    font-size: 24px;
+    height: 64px;
+    line-height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100%;
+    background: url('/gs.jpg') no-repeat;
+    background-size: 100% 100%;
+    margin-left: 50px;
+    margin-right: auto;
+}
+
+.courseTitle {
+    display: flex;
+    align-items: center;
+    line-height: 30px;
+    margin: 20px 0;
+    font-size: 25px;
+}
+
+.content {
+    padding: 10px;
+    min-height: calc(100vh - 64px - 48px - 48px + 27px);
+    width: 80%;
+    margin: auto;
+}
+
+
+@media screen and (max-width: 768px){
+    .content {
+        padding: 10px;
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .content {
+        padding: 10px;
+        width: 100%;
+        margin: auto;
+    }
+}

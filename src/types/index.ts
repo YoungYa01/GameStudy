@@ -9,21 +9,21 @@ export interface tutorialProps {
   image: string,
   video: string,
   multiQuestion: {
-    title: '题目示例',
+    title: string,
     options: [
       {
-        title: '选项1',
-        image: 'https://picsum.photos/200/300',
+        title: string,
+        image: string,
         correct: true
       },
       {
-        title: '选项2',
-        image: 'https://picsum.photos/200/300',
+        title: string,
+        image: string,
         correct: false
       },
       {
-        title: '选项3',
-        image: 'https://picsum.photos/200/300',
+        title: string,
+        image: string,
         correct: false
       }
     ]
@@ -89,4 +89,12 @@ export interface UserInfoProps {
   role: string
   sex: '0' | 1
   username: string
+}
+
+export type CourseType = {
+  cover: string,
+  title: string,
+  description: string
+  price: string
+  discount_price?: string
 }

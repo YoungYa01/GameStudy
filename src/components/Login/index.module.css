@@ -1,5 +1,5 @@
 .content {
-    background-image: url('src/assets/images/wel_bg.jpg');
+    background-image: url('src/assets/images/login_bg.jpg');
     background-repeat: no-repeat;
     background-clip: content-box;
     background-blend-mode: difference;
@@ -7,9 +7,25 @@
     animation: bgMove 60s infinite;
 }
 
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    font-size: 24px;
+    height: 64px;
+    line-height: 64px;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
 
 .form_bg {
-    background-color: rgb(var(--color-white));
+    /*background-color: rgb(var(--color-white));*/
+    backdrop-filter: blur(20px);
+    filter: drop-shadow(0 0 5rem #f0f0f0);
 }
 
 @keyframes bgMove {
@@ -20,7 +36,7 @@
         background-position: 50% 50%;
     }
     25% {
-        background-position: 100% 0%;
+        background-position: 90% 10%;
     }
     50% {
         background-position: 50% 50%;
@@ -29,7 +45,7 @@
         background-position: 0% 100%;
     }
     80%{
-        background-position: 100% 100%;
+        background-position: 90% 90%;
     }
     100% {
         background-position: 0% 0%;

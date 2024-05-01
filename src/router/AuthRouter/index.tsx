@@ -9,14 +9,19 @@ const AuthRouter: React.FC<{ children: React.ReactNode }> = ({children}) => {
   useEffect(() => {
 
     if (!token) {
-      if (location.pathname === '/login' || location.pathname === '/register'){
+
+      if (location.pathname === '/' || location.pathname === '/course') {
+        return;
+      }
+
+      if (location.pathname === '/login' || location.pathname === '/register') {
         return;
       }
       Message.error('请先登录');
       navigate('/login');
     }
     if (token) {
-      if (location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/') {
+      if (location.pathname === '/login' || location.pathname === '/register') {
         navigate('/home');
       } else {
         navigate(location.pathname);

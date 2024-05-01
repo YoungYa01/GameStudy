@@ -2,7 +2,7 @@ import {Suspense, useEffect, useState} from "react";
 import Loading from "../Loading";
 import {Button, Checkbox, Form, Input, Message} from "@arco-design/web-react";
 import css from './index.module.css'
-import {IconLock, IconUser} from "@arco-design/web-react/icon";
+import {IconLock, IconShrink, IconUser} from "@arco-design/web-react/icon";
 import {login} from "../../api/public";
 import {resolveResponse} from "../../utils/response.ts";
 import {loginProps, responseType} from "../../types";
@@ -11,6 +11,7 @@ import {useNavigate} from "react-router-dom";
 import {setToken} from "../../utils/localStorage.ts";
 import {useDispatch} from "react-redux";
 import {setUsername} from "../../store/modules/user";
+import {Header} from "antd/es/layout/layout";
 
 const FormItem = Form.Item;
 
@@ -60,6 +61,11 @@ const Login = () => {
     savePassword(value);
   };
 
+  const handleBackHome = () => {
+    navigate('/')
+  }
+
+
   useEffect(() => {
     const username = getUserName();
     const password = getPassword();
@@ -75,6 +81,14 @@ const Login = () => {
   return (
     <Suspense fallback={<Loading/>}>
       <div className={'flex h-screen ' + css.content}>
+        <Header className={css.header}>
+          <Button
+            type={'outline'}
+            shape={'round'}
+            size='large'
+            onClick={handleBackHome}
+            icon={<IconShrink style={{fontSize: 32, strokeWidth: 5}}/>}></Button>
+        </Header>
         <Form
           form={form}
           className={'w-1/4 h-2/5 p-8 border-2 rounded-lg m-auto ' + css.form_bg} layout={'vertical'}>

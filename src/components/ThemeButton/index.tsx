@@ -1,14 +1,12 @@
-import {Button} from "@arco-design/web-react";
 import {useEffect, useState} from "react";
 import {IconMoon, IconSun} from "@arco-design/web-react/icon";
 import {getLocalTheme, setLocalTheme} from "../../utils/localStorage.ts";
-import {buttonProps} from "../../types";
 
 /**
  * 主题切换按钮
  * @constructor
  */
-const ThemeButton = (props: buttonProps) => {
+const ThemeButton = () => {
 
   const [isDark, setIsDark] = useState(getLocalTheme() === 'dark');
 

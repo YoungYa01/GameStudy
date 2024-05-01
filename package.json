@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^2.2.3",
     "@visactor/vchart": "^1.10.4",
     "@visactor/vchart-arco-theme": "^1.10.4",
+    "antd": "^5.16.5",
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.8",
     "js-cookie": "^3.0.5",
