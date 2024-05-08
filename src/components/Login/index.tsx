@@ -1,9 +1,9 @@
 import {Suspense, useEffect, useState} from "react";
 import Loading from "../Loading";
-import {Button, Checkbox, Form, Input, Message} from "@arco-design/web-react";
+import {Button, Checkbox, Form, Input, Message, Grid} from "@arco-design/web-react";
 import css from './index.module.css'
-import {IconLock, IconShrink, IconUser} from "@arco-design/web-react/icon";
-import {login} from "../../api/public";
+import {IconLock, IconRobot, IconShrink, IconUser} from "@arco-design/web-react/icon";
+import {getCaptcha, login} from "../../api/public";
 import {resolveResponse} from "../../utils/response.ts";
 import {loginProps, responseType} from "../../types";
 import {getPassword, getUserName, savePassword, saveUserName} from "../../utils/cookies.ts";
@@ -18,6 +18,7 @@ const FormItem = Form.Item;
 const Login = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const [captcha, setCaptcha] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onSubmit = () => {
@@ -28,12 +29,16 @@ const Login = () => {
     if (!data.password) {
       return Message.warning('请填写密码');
     }
+    if (!data.captcha) {
+      return Message.warning('请填写验证码');
+    }
     if (data.remember) {
       saveUserName(data.username);
       savePassword(data.password);
     }
     setLoading(true);
-    login(data as loginProps)
+    const captchaId = captcha.match(/\/profile\/captcha\/(.*?)\.png/i)
+    login({captchaId:captchaId?.[1], ...data} as unknown as loginProps)
       .then(response => {
         resolveResponse(response as unknown as responseType);
         setToken(response.data);
@@ -65,6 +70,18 @@ const Login = () => {
     navigate('/')
   }
 
+  const getCaptchaUrl = () => {
+    getCaptcha()
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      .then((response: { code: number, data: string, message: string }) => {
+        if (response.code == 200) {
+          return setCaptcha(response.data)
+        }
+        return Message.error(response.message);
+      })
+  }
+
 
   useEffect(() => {
     const username = getUserName();
@@ -75,6 +92,7 @@ const Login = () => {
       password,
       remember: !!isSaved,
     })
+    getCaptchaUrl();
   }, []);
 
 
@@ -91,7 +109,7 @@ const Login = () => {
         </Header>
         <Form
           form={form}
-          className={'w-1/4 h-2/5 p-8 border-2 rounded-lg m-auto ' + css.form_bg} layout={'vertical'}>
+          className={'w-1/4 p-8 border-2 rounded-lg m-auto ' + css.form_bg} layout={'vertical'}>
           <FormItem>
             <h1 className={'text-4xl'}>Gaming Study Admin</h1>
           </FormItem>
@@ -110,6 +128,26 @@ const Login = () => {
               onChange={handlePasswordChange}
             />
           </FormItem>
+          <Grid.Row gutter={8}>
+            <Grid.Col span={16}>
+              <FormItem field={'captcha'} rules={[{required: true, message: '请填写验证码'}]}
+                        className={'w-full flex justify-between'}>
+                <Input
+                  placeholder='验证码'
+                  prefix={<IconRobot/>}
+                  className={'w-full border-1 border-gray-300 border-lg'}
+                />
+              </FormItem>
+            </Grid.Col>
+            <Grid.Col span={8}>
+              <img
+                className={'h-10 cursor-pointer'}
+                src={`http://localhost:8080${captcha}`}
+                alt="captcha"
+                onClick={getCaptchaUrl}
+              />
+            </Grid.Col>
+          </Grid.Row>
           <FormItem field={'remember'}>
             <Checkbox>记住密码</Checkbox>
           </FormItem>

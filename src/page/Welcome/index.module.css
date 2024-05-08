@@ -15,7 +15,7 @@
 .logo {
     width: 100px;
     height: 100%;
-    background: url('/gs.jpg') no-repeat;
+    background: url('/gs.png') no-repeat;
     background-size: 100% 100%;
     margin-left: 50px;
     margin-right: auto;
@@ -27,6 +27,13 @@
     line-height: 30px;
     margin: 20px 0;
     font-size: 25px;
+    position: relative;
+}
+
+.search{
+    position: absolute;
+    right: -12px;
+    top: 2px;
 }
 
 .content {

@@ -49,7 +49,7 @@ const CourseCarousel: React.FC<T> = (props: T) => {
           <img
             src={item.src}
             alt={item.title}
-            style={{width: '100%'}}
+            style={{height: '550px'}}
           />
         </div>
       ))}

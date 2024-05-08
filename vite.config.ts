@@ -7,7 +7,10 @@ import autoprefixer from "autoprefixer";
 // https://vitejs.dev/config/
 
 
-export default ({mode}: UserConfig) => {
+export default (config: UserConfig) => {
+
+  const {mode} = config;
+
   return defineConfig({
     plugins: [react()],
     css: {
@@ -22,7 +25,16 @@ export default ({mode}: UserConfig) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
+      },
+      port: 3000,
+    },
+    resolve: {
+      alias: {
+        '@': '/src'
       }
+    },
+    build: {
+      cssCodeSplit: true,
     }
   })
 

@@ -13,7 +13,10 @@ const HeaderMenu = (props: { nickname: string, avatar: string }) => {
   return (
     <div>
       <Menu mode={'horizontal'} defaultSelectedKeys={['1']}>
-        <MenuItem key={'home'} onClick={()=>navigate('/')}>
+        <MenuItem key={'home'} onClick={()=>{
+          navigate('/');
+          window.location.reload();
+        }}>
           首页
         </MenuItem>
         <MenuItem key={'blank1'}>

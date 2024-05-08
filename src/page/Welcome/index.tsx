@@ -1,94 +1,18 @@
 import Loading from "../../components/Loading";
-import {useEffect, useState} from "react";
-import {ConfigProvider, Layout, Menu} from 'antd'
+import { useEffect,  useState} from "react";
+import {ConfigProvider, Layout, Menu, } from 'antd'
 import {getLocalTheme, getToken} from "../../utils/localStorage.ts";
 import CourseCarousel from "../../components/CourseCarousel";
 import CourseList from "../../components/CourseList";
 import {HotIcon} from "../../icons/WelcomeIcon";
 import css from './index.module.css'
+import {loginMenu, unLoginMenu} from "./menu.ts";
 
 const {Header, Content, Footer} = Layout;
 
 const isLogin = getToken() !== null;
 
-const MenuItem = isLogin ? [
-    {
-      label: '精品课程',
-      key: 'HQ_courses',
-    },
-    {
-      label: '热门课程',
-      key: 'Hot_courses',
-    },
-    {
-      label: '最新课程',
-      key: 'New_courses',
-    },
-    {
-      label: '推荐课程',
-      key: 'Recommend_courses',
-    },
-    {
-      label: '我的课程',
-      key: 'My_courses',
-      children: [
-
-        {
-          label: '我的收藏',
-          key: 'My_collection',
-        },
-        {
-          label: '我的消息',
-          key: 'My_message',
-        },
-        {
-          label: '我的资料',
-          key: 'My_profile',
-        },
-        {
-          label: '我的设置',
-          key: 'My_setting',
-        },
-        {
-          label: '我的主页',
-          key: 'My_home',
-        },
-      ]
-    }
-  ] :
-  [
-    {
-      label: '精品课程',
-      key: 'HQ_courses',
-    },
-    {
-      label: '热门课程',
-      key: 'Hot_courses',
-    },
-    {
-      label: '最新课程',
-      key: 'New_courses',
-    },
-    {
-      label: '推荐课程',
-      key: 'Recommend_courses',
-    },
-    {
-      label: '登录',
-      key: 'Login',
-      onClick: () => {
-        location.href = '/login';
-      }
-    },
-    {
-      label: '注册',
-      key: 'Register',
-      onClick: () => {
-        location.href = '/register';
-      }
-    },
-  ]
-
+const MenuItem = isLogin ? loginMenu : unLoginMenu
 
 const Welcome = () => {
   const [loading, setLoading] = useState(true);
@@ -100,6 +24,7 @@ const Welcome = () => {
       setLoading(false);
     }, 1000)
   }, []);
+
 
   return (
     <ConfigProvider
@@ -120,7 +45,7 @@ const Welcome = () => {
               <div className={css.logo}></div>
               <Menu
                 theme={getLocalTheme() as 'light' | 'dark'}
-                style={{backgroundColor: 'transparent'}}
+                style={{backgroundColor: 'transparent',color: theme === 'light' ? '#000000' : '#eff5ff'}}
                 mode="horizontal"
                 defaultSelectedKeys={[]}
                 items={MenuItem}
@@ -136,8 +61,12 @@ const Welcome = () => {
                 border: '1px solid #f0f0f0',
                 borderRadius: '1rem'
               }}/>
-              <p className={css.courseTitle}><HotIcon width={30} height={30}/>热门课程</p>
-              <CourseList/>
+
+              <CourseList title={
+                <p className={css.courseTitle}>
+                  <HotIcon width={30} height={30}/>热门课程
+                </p>
+              }/>
               {/*<p className={css.courseTitle}><HotIcon width={30} height={30}/>精品课程</p>*/}
               {/*<CourseList/>*/}
               {/*<p className={css.courseTitle}><HotIcon width={30} height={30}/>进阶课程</p>*/}

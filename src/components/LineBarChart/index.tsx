@@ -91,18 +91,19 @@ const LineBarChart = () => {
   const specs = [barSpec, scatterSpec];
 
   useEffect(() => {
-    return () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const vchart = new VChart(specs[0], {dom: lineBarChart});
+    vchart.renderSync();
+    let count = 1;
+    const timer = setInterval(() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
-      const vchart = new VChart(specs[0], {dom: lineBarChart});
-      vchart.renderSync();
-      let count = 1;
-      setInterval(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        vchart.updateSpec(specs[count % 2]);
-        count++;
-      }, 3000);
+      vchart.updateSpec(specs[count % 2]);
+      count++;
+    }, 3000);
+    return () => {
+      clearInterval(timer);
     }
 
   }, []);

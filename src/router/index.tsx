@@ -7,6 +7,7 @@ import Error403 from "../components/Error403";
 const Login = lazy(() => import('../components/Login'))
 const Register = lazy(() => import('../components/Register'))
 const Home = lazy(() => import('../page/Home'))
+const CourseDetail = lazy(() => import('../page/CourseDetail'))
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
     {
       path: "/home",
       element: <Home/>,
+    },
+    {
+      path: "/course-detail/:id/:title",
+      element: <CourseDetail/>,
     }
   ].map(r => (
     {
@@ -34,4 +39,5 @@ const router = createBrowserRouter([
   ))
 )
 
+console.log(router);
 export default router;

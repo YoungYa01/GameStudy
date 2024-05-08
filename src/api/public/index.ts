@@ -42,3 +42,20 @@ export const getCourseList = ({currentPage, pageSize}: {
   url: `/public/all-course?currentPage=${currentPage}&pageSize=${pageSize}`,
   method: 'get',
 })
+
+/**
+ * 模糊查询课程
+ * @param keyword
+ */
+export const queryCourse = (keyword: string) => service({
+  url: `/public/fuzzy/course?keyword=${keyword}`,
+  method: 'get',
+})
+
+/**
+ * 获取验证码
+ */
+export const getCaptcha = () => service({
+  url: `/getCaptcha`,
+  method: 'get',
+})

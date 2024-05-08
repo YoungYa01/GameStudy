@@ -55,6 +55,8 @@ export interface buttonIconProps {
 export interface loginProps {
   username: string,
   password: string,
+  captcha: string,
+  captchaId: string,
 }
 
 export interface registerProps {
@@ -92,6 +94,7 @@ export interface UserInfoProps {
 }
 
 export type CourseType = {
+  id: number,
   cover: string,
   title: string,
   description: string

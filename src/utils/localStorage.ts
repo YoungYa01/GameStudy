@@ -11,13 +11,13 @@ export const removeToken = () => {
 }
 
 export const setLocalTheme = (theme: string) => {
-  localStorage.setItem('theme', theme)
+  localStorage.setItem('GS_theme', theme)
 }
 
 export const getLocalTheme = (): string | null => {
-  return localStorage.getItem('theme')
+  return localStorage.getItem('GS_theme')
 }
 
 export const setUsername = (username: string) => {
-  localStorage.setItem('username', username);
+  localStorage.setItem('GS_username', username);
 }

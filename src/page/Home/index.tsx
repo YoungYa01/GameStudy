@@ -4,10 +4,6 @@ import {getUserInfo} from "../../api/user";
 import HeaderMenu from "../../components/HeaderMenu";
 import {getUserName} from "../../utils/cookies.ts";
 import {Card, Grid,} from "@arco-design/web-react";
-import DotGraph from "../../components/DotGraph";
-import Heatmap from "../../components/Heatmap";
-import LineBarChart from "../../components/LineBarChart";
-import LongLineChar from "../../components/LongLineChar";
 
 
 export default (): JSX.Element => {
@@ -15,7 +11,7 @@ export default (): JSX.Element => {
 
   const [userInfo, setUserInfo] = useState<any>();
 
-  const ChartCard = (props: { children: ReactElement }) => (
+  const ChartCard = (props: { children?: ReactElement }) => (
     <Card
       bordered
       hoverable
@@ -44,22 +40,30 @@ export default (): JSX.Element => {
       <Grid cols={3} colGap={20} rowGap={15} className={'w-full p-5'}>
         <Grid.GridItem className={'w-full'}>
           <ChartCard>
-            <DotGraph/>
+            {/*<DotGraph/>*/}
           </ChartCard>
         </Grid.GridItem>
         <Grid.GridItem>
           <ChartCard>
-            <Heatmap/>
+            {/*<Heatmap/>*/}
           </ChartCard>
         </Grid.GridItem>
         <Grid.GridItem>
           <ChartCard>
-            <LineBarChart/>
+            {/*<LineBarChart/>*/}
+            <div className={'text-left'}>
+              <h1>通知：</h1>
+              <p>
+                最新通知。
+                最新通知。
+                最新通知。
+              </p>
+            </div>
           </ChartCard>
         </Grid.GridItem>
         <Grid.GridItem span={3}>
           <ChartCard>
-            <LongLineChar/>
+            {/*<LongLineChar/>*/}
           </ChartCard>
         </Grid.GridItem>
       </Grid>
